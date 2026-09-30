@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préparation CAP Anglais - Épreuve Écrite</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #1a4d7a;
+            --primary-light: #2566a3;
+            --primary-dark: #0f3355;
+            --accent: #e85d04;
+            --accent-light: #ff7b2e;
+            --success: #2d6a4f;
+            --warning: #f77f00;
+            --danger: #d62828;
+            --bg-main: #fafbfc;
+            --bg-card: #ffffff;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        header h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .exercise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .exercise-btn {
+            background: var(--bg-main);
+            border: 2px solid var(--border);
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.95em;
+            font-weight: 500;
+            color: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exercise-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .exercise-btn:hover {
+            border-color: var(--primary);
+            background: white;
+            transform: translateX(5px);
+        }
+
+        .exercise-btn:hover::before {
+            transform: scaleY(1);
+        }
+
+        .exercise-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .exercise-btn.active::before {
+            transform: scaleY(1);
+            background: white;
+        }
+
+        .exercise-meta {
+            font-size: 0.85em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .progress-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .progress-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1em;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success) 0%, #52b788 100%);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        .content-area {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            min-height: 600px;
+        }
+
+        .exercise-header {
+            border-bottom: 3px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .exercise-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .exercise-description {
+            color: var(--text-secondary);
+            font-size: 1.05em;
+            line-height: 1.7;
+            background: var(--bg-main);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            margin-top: 15px;
+        }
+
+        .context-box {
+            background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .context-title {
+            font-weight: 700;
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .writing-area {
+            margin: 25px 0;
+        }
+
+        .writing-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: block;
+            font-size: 1.05em;
+        }
+
+        .writing-input {
+            width: 100%;
+            min-height: 300px;
+            padding: 20px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1em;
+            line-height: 1.8;
+            resize: vertical;
+            transition: all 0.3s ease;
+            background: var(--bg-main);
+        }
+
+        .writing-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 77, 122, 0.1);
+            background: white;
+        }
+
+        .word-count {
+            text-align: right;
+            color: var(--text-muted);
+            font-size: 0.9em;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+        }
+
+        .btn-secondary {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            border-color: var(--primary);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .correction-panel {
+            margin-top: 40px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .score-banner {
+            background: linear-gradient(135deg, var(--success) 0%, #52b788 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .score-item {
+            text-align: center;
+        }
+
+        .score-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .score-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            font-family: 'Crimson Pro', serif;
+        }
+
+        .evaluation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .criterion-card {
+            background: var(--bg-main);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .criterion-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .criterion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .criterion-name {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.05em;
+        }
+
+        .criterion-score {
+            font-weight: 700;
+            font-size: 1.3em;
+            color: var(--success);
+        }
+
+        .criterion-score.low {
+            color: var(--danger);
+        }
+
+        .criterion-score.medium {
+            color: var(--warning);
+        }
+
+        .criterion-feedback {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .remediation-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 2px solid #2196f3;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .remediation-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #0d47a1;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .remediation-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .remediation-item {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid #2196f3;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .remediation-category {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .remediation-advice {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .remediation-example {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            border-left: 3px solid var(--accent);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .alert-info {
+            background: #e3f2fd;
+            color: #0d47a1;
+            border: 1px solid #2196f3;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            color: #1b5e20;
+            border: 1px solid #4caf50;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .tips-title {
+            font-weight: 700;
+            color: #e65100;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .tips-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tips-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .tips-list li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .explanation-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        @media print {
+            .sidebar, .action-buttons, header {
+                display: none;
+            }
+            .content-area {
+                box-shadow: none;
+                border: none;
+            }
+        }
+
+        /* ===== Identification élève ===== */
+        #identScreen {
+            position: fixed; inset: 0; z-index: 999;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            display: flex; align-items: center; justify-content: center; padding: 24px;
+        }
+        #identScreen .ident-card {
+            background: white; border-radius: 20px; padding: 40px; max-width: 440px; width: 100%;
+            box-shadow: var(--shadow-lg); text-align: center;
+        }
+        #identScreen h2 { font-family: 'Crimson Pro', serif; color: var(--primary); margin-bottom: 8px; font-size: 1.6em; }
+        #identScreen p { color: var(--text-secondary); margin-bottom: 20px; font-size: 0.95em; }
+        #identScreen input {
+            width: 100%; padding: 12px 14px; border: 2px solid var(--border); border-radius: 10px;
+            font-size: 1em; margin-bottom: 14px; font-family: inherit;
+        }
+        #identScreen input:focus { outline: none; border-color: var(--primary-light); }
+        #identScreen .ident-hint { font-size: 0.8em; color: var(--text-muted); margin-top: 14px; }
+
+        /* ===== Header top bar ===== */
+        .header-topbar { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: -10px; position: relative; z-index: 1; }
+        .header-topbar button {
+            background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3);
+            padding: 6px 14px; border-radius: 20px; font-size: 0.82em; cursor: pointer; font-weight: 600;
+        }
+        .header-topbar button:hover { background: rgba(255,255,255,0.25); }
+
+        /* ===== Vue formateur ===== */
+        .teacher-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.92em; }
+        .teacher-table th, .teacher-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+        .teacher-table th { background: #f8f9fa; font-weight: 600; color: var(--text-secondary); }
+        .teacher-table tr:hover { background: #fafbfc; }
+        .disclaimer-box {
+            background: #fff8e1; border: 1px solid #ffd54f; border-radius: 10px;
+            padding: 12px 16px; font-size: 0.85em; color: #7a5c00; margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="identScreen">
+        <div class="ident-card">
+            <h2>👋 Bienvenue</h2>
+            <p>Indiquez votre prénom et nom pour retrouver votre progression personnelle.</p>
+            <input type="text" id="identName" placeholder="Prénom Nom" onkeydown="if(event.key==='Enter') startSession()">
+            <button class="btn btn-primary" style="width:100%;" onclick="startSession()">Commencer mon entraînement</button>
+            <p class="ident-hint">💾 Votre progression est enregistrée sur cet ordinateur, sous votre nom.</p>
+        </div>
+    </div>
+    <div class="app-container">
+        <header>
+            <div class="header-topbar">
+                <button onclick="switchStudent()">🔄 Changer d'élève</button>
+                <button onclick="openTeacherView()">👩‍🏫 Espace formateur</button>
+            </div>
+            <h1>📚 Préparation CAP Anglais</h1>
+            <p>Épreuve Écrite - Entraînement complet avec correction intelligente et remédiations personnalisées</p>
+            <span class="badge">Conforme au référentiel officiel • Correction autonome</span>
+        </header>
+
+        <div class="disclaimer-box">
+            ℹ️ Cette correction automatique est un outil d'<strong>entraînement autonome</strong> qui repère les erreurs les plus fréquentes. Elle vient en complément du formateur, qui reste seul décisionnaire pour toute évaluation officielle.
+        </div>
+
+        <div class="main-grid">
+            <div class="sidebar">
+                <div class="card">
+                    <div class="card-title">Types d'exercices</div>
+                    <div class="exercise-list" id="exerciseList"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Progression</div>
+                    <div class="progress-section">
+                        <div class="progress-item">
+                            <span class="progress-label">Exercices complétés</span>
+                            <span class="progress-value" id="completedCount">0/7</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-item" style="margin-top: 20px;">
+                            <span class="progress-label">Note moyenne</span>
+                            <span class="progress-value" id="averageScore">--/20</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div id="exerciseContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="teacherOverlay" style="display:none; position:fixed; inset:0; z-index:998; background:rgba(15,51,85,0.75); align-items:center; justify-content:center; padding:24px;">
+        <div style="background:white; border-radius:20px; padding:32px; max-width:900px; width:100%; max-height:85vh; overflow:auto; box-shadow: var(--shadow-lg);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <h2 style="font-family:'Crimson Pro', serif; color:var(--primary);">👩‍🏫 Espace formateur</h2>
+                <button class="btn btn-secondary" onclick="closeTeacherView()">Fermer</button>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.88em; margin-bottom:10px;">Résultats de tous les élèves ayant utilisé cet ordinateur. Sur plusieurs postes, exportez puis compilez les fichiers CSV.</p>
+            <div style="margin-bottom: 14px;">
+                <button class="btn btn-primary" onclick="exportTeacherCSV()">⬇️ Exporter en CSV</button>
+            </div>
+            <div id="teacherTableContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // MOTEUR DE CORRECTION LINGUISTIQUE INTÉGRÉ
+        // ============================================
+
+        const GRAMMAR_RULES = {
+            // Erreurs courantes des francophones
+            subjectVerbAgreement: [
+                { pattern: /\b(he|she|it)\s+(have|do|go|want|need)\b/gi, error: 'Accord sujet-verbe 3e personne' },
+                { pattern: /\b(I|you|we|they)\s+(has|does|goes|wants|needs)\b/gi, error: 'Accord sujet-verbe' }
+            ],
+            articles: [
+                { pattern: /\b(a)\s+[aeiou]/gi, error: 'Article "an" attendu avant voyelle' },
+                { pattern: /\ban\s+[^aeiou]/gi, error: 'Article "a" attendu avant consonne' }
+            ],
+            prepositions: [
+                { pattern: /\bin\s+(monday|tuesday|wednesday|thursday|friday|saturday|sunday)/gi, error: 'Utiliser "on" avec les jours' },
+                { pattern: /\bat\s+(january|february|march|april|may|june|july|august|september|october|november|december)/gi, error: 'Utiliser "in" avec les mois' }
+            ],
+            tenses: [
+                { pattern: /\bI\s+am\s+\w+ing\s+(yesterday|last|ago)/gi, error: 'Temps incompatible avec le passé' },
+                { pattern: /\b(will|shall)\s+\w+ed\b/gi, error: 'Mélange futur/passé' }
+            ],
+            wordOrder: [
+                { pattern: /\b(very|really|quite)\s+(much|many)\b/gi, error: 'Ordre des mots' }
+            ]
+        };
+
+        const PROFESSIONAL_VOCABULARY = {
+            email: ['subject', 'dear', 'sincerely', 'regards', 'confirm', 'order', 'delivery', 'thank', 'please'],
+            letter: ['dear', 'position', 'experience', 'skills', 'motivation', 'sincerely', 'yours'],
+            formal: ['furthermore', 'however', 'therefore', 'regarding', 'concerning', 'enclosed'],
+            polite: ['please', 'would', 'could', 'kindly', 'appreciate', 'thank']
+        };
+
+        const COMMON_ERRORS = {
+            // Faux-amis et erreurs typiques
+            'actually': { correct: 'currently/now', note: 'Actually = en fait, pas actuellement' },
+            'assist': { correct: 'attend', note: 'To assist = aider, pas assister à' },
+            'eventually': { correct: 'finally', note: 'Eventually = finalement, pas éventuellement' },
+            'pass an exam': { correct: 'take an exam', note: 'Pass = réussir, take = passer' }
+        };
+
+        // ============================================
+        // DONNÉES DES EXERCICES
+        // ============================================
+
+        const exercises = [
+            {
+                id: 'email',
+                title: 'Rédaction d\'un courriel professionnel',
+                description: 'Rédiger un courriel en anglais dans un contexte professionnel',
+                wordCount: { min: 60, max: 80 },
+                wordCountText: '60-80 mots',
+                context: `Vous travaillez dans une entreprise française qui a des partenaires britanniques. Votre responsable vous demande d'écrire un courriel à Mr. Thompson, client britannique.`,
+                instructions: `Rédigez un courriel pour :
+- Confirmer la réception de sa commande n°4521
+- L'informer que la livraison aura lieu le 15 juin
+- Lui demander de confirmer l'adresse de livraison
+- Le remercier pour sa confiance`,
+                requiredElements: ['subject line', 'greeting', 'order confirmation', 'delivery date', 'address request', 'thanks', 'closing'],
+                type: 'email'
+            },
+            {
+                id: 'letter',
+                title: 'Lettre de motivation',
+                description: 'Rédiger une lettre de motivation pour un emploi',
+                wordCount: { min: 80, max: 100 },
+                wordCountText: '80-100 mots',
+                context: `Vous postulez pour un emploi de vendeur/vendeuse dans un magasin de vêtements à Londres.`,
+                instructions: `Rédigez une lettre de motivation incluant :
+- Votre présentation personnelle
+- Vos qualités et compétences pour le poste
+- Votre motivation pour travailler dans ce magasin
+- Une formule de politesse appropriée`,
+                requiredElements: ['introduction', 'skills', 'motivation', 'closing formula'],
+                type: 'letter'
+            },
+            {
+                id: 'form',
+                title: 'Remplissage de formulaire',
+                description: 'Compléter un formulaire administratif en anglais',
+                wordCount: { min: 40, max: 60 },
+                wordCountText: '40-60 mots',
+                context: `Vous devez remplir un formulaire d'inscription pour un stage en entreprise au Royaume-Uni.`,
+                instructions: `Complétez le formulaire avec :
+- Vos informations personnelles (nom, prénom, date de naissance)
+- Votre formation actuelle
+- Vos compétences professionnelles
+- Vos disponibilités pour le stage`,
+                requiredElements: ['personal info', 'education', 'skills', 'availability'],
+                type: 'form'
+            },
+            {
+                id: 'message',
+                title: 'Message court (SMS/messagerie)',
+                description: 'Rédiger un message informel court',
+                wordCount: { min: 30, max: 50 },
+                wordCountText: '30-50 mots',
+                context: `Votre collègue anglophone Sarah vous a laissé un message vous demandant de l'aide pour organiser une réunion.`,
+                instructions: `Rédigez un message pour :
+- Accepter de l'aider
+- Proposer un horaire (jeudi 14h)
+- Demander le nombre de participants
+- Suggérer la salle de réunion B`,
+                requiredElements: ['acceptance', 'time suggestion', 'question', 'venue suggestion'],
+                type: 'message'
+            },
+            {
+                id: 'invitation',
+                title: 'Invitation professionnelle',
+                description: 'Rédiger une invitation pour un événement professionnel',
+                wordCount: { min: 60, max: 80 },
+                wordCountText: '60-80 mots',
+                context: `Votre entreprise organise une journée portes ouvertes et vous devez inviter vos partenaires anglophones.`,
+                instructions: `Rédigez une invitation incluant :
+- L'événement (journée portes ouvertes)
+- La date et l'heure (samedi 20 mai, 10h-18h)
+- Le lieu (votre entreprise)
+- Une demande de confirmation de présence`,
+                requiredElements: ['event', 'date', 'time', 'place', 'RSVP'],
+                type: 'invitation'
+            },
+            {
+                id: 'complaint',
+                title: 'Réclamation client',
+                description: 'Rédiger une réclamation polie mais ferme',
+                wordCount: { min: 70, max: 90 },
+                wordCountText: '70-90 mots',
+                context: `Vous avez commandé un produit en ligne qui est arrivé endommagé.`,
+                instructions: `Rédigez une réclamation pour :
+- Expliquer le problème (produit endommagé)
+- Donner les références de commande (n°7834)
+- Demander un remboursement ou un remplacement
+- Exprimer votre mécontentement poliment`,
+                requiredElements: ['problem description', 'order reference', 'request', 'polite complaint'],
+                type: 'complaint'
+            },
+            {
+                id: 'note',
+                title: 'Note de service',
+                description: 'Rédiger une note d\'information interne',
+                wordCount: { min: 50, max: 70 },
+                wordCountText: '50-70 mots',
+                context: `Vous devez informer les employés d'un changement d'horaires dans l'entreprise.`,
+                instructions: `Rédigez une note de service pour :
+- Annoncer le changement d'horaires (à partir du 1er juillet)
+- Préciser les nouveaux horaires (9h-17h au lieu de 8h-16h)
+- Expliquer la raison (amélioration du service client)
+- Inviter à poser des questions`,
+                requiredElements: ['announcement', 'new schedule', 'reason', 'contact info'],
+                type: 'note'
+            },
+            {
+                id: 'email2',
+                title: 'E-mail (confirmation de rendez-vous)',
+                description: 'Confirmer un rendez-vous professionnel',
+                wordCount: { min: 60, max: 90 },
+                wordCountText: '60-90 mots',
+                context: `Votre entreprise travaille avec une société irlandaise. Vous devez écrire à Ms. O'Brien pour confirmer un rendez-vous.`,
+                instructions: `Rédigez un e-mail pour :
+- Confirmer le rendez-vous de mardi à 10h
+- Préciser le lieu (bureau, 2ème étage)
+- Demander si elle a besoin d'un interprète
+- Terminer poliment`,
+                requiredElements: ['greeting', 'meeting confirmation', 'location info', 'interpreter question', 'closing'],
+                type: 'email'
+            },
+            {
+                id: 'letter2',
+                title: 'Lettre de motivation (poste saisonnier)',
+                description: 'Postuler pour un emploi saisonnier à l\'étranger',
+                wordCount: { min: 90, max: 130 },
+                wordCountText: '90-130 mots',
+                context: `Vous postulez pour un emploi saisonnier de serveur/serveuse dans un restaurant à Dublin.`,
+                instructions: `Rédigez une lettre de motivation pour :
+- Vous présenter
+- Mentionner une expérience en restauration
+- Expliquer pourquoi ce poste vous intéresse
+- Terminer par une formule de politesse`,
+                requiredElements: ['introduction', 'skills', 'motivation', 'closing formula'],
+                type: 'letter'
+            },
+            {
+                id: 'form2',
+                title: 'Formulaire (réservation d\'hébergement)',
+                description: 'Remplir un formulaire de réservation en anglais',
+                wordCount: { min: 40, max: 70 },
+                wordCountText: '40-70 mots',
+                context: `Vous organisez un séjour linguistique et devez remplir un formulaire de réservation pour une auberge de jeunesse à Londres.`,
+                instructions: `Complétez le formulaire en indiquant :
+- Vos informations personnelles (nom, nationalité)
+- Les dates de séjour souhaitées
+- Le type de chambre souhaité
+- Une demande particulière`,
+                requiredElements: ['personal info', 'stay dates', 'room type', 'special request'],
+                type: 'form'
+            },
+            {
+                id: 'message2',
+                title: 'Message court (annulation de rendez-vous)',
+                description: 'Annuler un rendez-vous poliment',
+                wordCount: { min: 30, max: 50 },
+                wordCountText: '30-50 mots',
+                context: `Vous devez annuler un rendez-vous avec votre collègue anglophone Tom en raison d'un imprévu.`,
+                instructions: `Rédigez un message pour :
+- Vous excuser
+- Expliquer brièvement la raison
+- Proposer un autre horaire (vendredi matin)`,
+                requiredElements: ['apology', 'reason', 'time suggestion'],
+                type: 'message'
+            },
+            {
+                id: 'invitation2',
+                title: 'Invitation (webinaire professionnel)',
+                description: 'Inviter des partenaires à un webinaire',
+                wordCount: { min: 50, max: 80 },
+                wordCountText: '50-80 mots',
+                context: `Votre entreprise organise un webinaire sur les nouvelles normes de sécurité et vous devez inviter vos partenaires.`,
+                instructions: `Rédigez une invitation pour :
+- Présenter l'événement (webinaire sécurité)
+- Indiquer la date et l'heure (mercredi 14h)
+- Donner le lien de connexion
+- Demander une confirmation de participation`,
+                requiredElements: ['event', 'date', 'time', 'connection link', 'RSVP'],
+                type: 'invitation'
+            },
+            {
+                id: 'complaint2',
+                title: 'Réclamation (retard de livraison)',
+                description: 'Se plaindre poliment d\'un retard important',
+                wordCount: { min: 70, max: 100 },
+                wordCountText: '70-100 mots',
+                context: `Vous attendez une commande professionnelle (n°9012) qui a plus d'une semaine de retard.`,
+                instructions: `Rédigez une réclamation pour :
+- Expliquer le problème (retard important)
+- Rappeler la référence de commande
+- Demander une explication ou un geste commercial
+- Rester poli mais ferme`,
+                requiredElements: ['problem description', 'order reference', 'request', 'polite complaint'],
+                type: 'complaint'
+            },
+            {
+                id: 'note2',
+                title: 'Note de service (procédure de sécurité)',
+                description: 'Annoncer une nouvelle procédure obligatoire',
+                wordCount: { min: 50, max: 70 },
+                wordCountText: '50-70 mots',
+                context: `Vous devez informer les employés d'une nouvelle procédure de sécurité obligatoire dans l'entreprise.`,
+                instructions: `Rédigez une note de service pour :
+- Annoncer la nouvelle procédure (badge obligatoire)
+- Préciser la date d'entrée en vigueur (1er septembre)
+- Expliquer la raison (sécurité renforcée)
+- Indiquer qui contacter pour plus d'informations`,
+                requiredElements: ['announcement', 'effective date', 'reason', 'contact info'],
+                type: 'note'
+            }
+        ];
+
+        let currentExercise = null;
+        let currentStudent = null; // nom de l'élève identifié pour cette session
+        let userProgress = { completed: [], scores: {} };
+
+        // ============================================
+        // GESTION MULTI-ÉLÈVES (stockage par nom, sur cet ordinateur)
+        // ============================================
+        const USERS_KEY = 'capUsers'; // { "Prénom Nom": { completed:[], scores:{}, drafts:{} } }
+
+        function loadAllUsers(){
+            try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; }
+            catch(e){ return {}; }
+        }
+        function saveAllUsers(users){ localStorage.setItem(USERS_KEY, JSON.stringify(users)); }
+
+        function getUserRecord(name){
+            const users = loadAllUsers();
+            if (!users[name]) users[name] = { completed: [], scores: {}, drafts: {} };
+            return users[name];
+        }
+        function saveUserRecord(name, record){
+            const users = loadAllUsers();
+            users[name] = record;
+            saveAllUsers(users);
+        }
+
+        function startSession(){
+            const input = document.getElementById('identName');
+            const name = input.value.trim();
+            if (!name){ input.style.borderColor = 'var(--danger)'; input.focus(); return; }
+            currentStudent = name;
+            sessionStorage.setItem('capCurrentStudent', name);
+            const record = getUserRecord(name);
+            userProgress = { completed: record.completed || [], scores: record.scores || {} };
+            document.getElementById('identScreen').style.display = 'none';
+            initApp();
+        }
+
+        function switchStudent(){
+            if (!confirm("Changer d'élève ? Votre progression actuelle reste sauvegardée sous votre nom.")) return;
+            sessionStorage.removeItem('capCurrentStudent');
+            document.getElementById('identName').value = '';
+            document.getElementById('identScreen').style.display = 'flex';
+        }
+
+        function persistProgress(){
+            const record = getUserRecord(currentStudent);
+            record.completed = userProgress.completed;
+            record.scores = userProgress.scores;
+            saveUserRecord(currentStudent, record);
+        }
+
+        // ============================================
+        // ESPACE FORMATEUR
+        // ============================================
+        function openTeacherView(){
+            const users = loadAllUsers();            const names = Object.keys(users).sort();
+            const container = document.getElementById('teacherTableContainer');
+            if (!names.length){
+                container.innerHTML = '<p style="color:var(--text-muted);">Aucun élève n\'a encore utilisé cet ordinateur.</p>';
+            } else {
+                const rows = names.map(name => {
+                    const u = users[name];
+                    const scores = Object.values(u.scores || {});
+                    const avg = scores.length ? (scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1) : '—';
+                    const completedCount = (u.completed || []).length;
+                    return `<tr>
+                        <td><strong>${escapeHtmlCap(name)}</strong></td>
+                        <td>${completedCount}/${exercises.length}</td>
+                        <td>${avg}${avg !== '—' ? '/20' : ''}</td>
+                        <td>${exercises.map(ex => {
+                            const s = u.scores && u.scores[ex.id];
+                            return s !== undefined ? `${ex.id}: ${s.toFixed(1)}` : null;
+                        }).filter(Boolean).join(' · ') || '—'}</td>
+                    </tr>`;
+                }).join('');
+                container.innerHTML = `<table class="teacher-table">
+                    <thead><tr><th>Élève</th><th>Exercices faits</th><th>Moyenne</th><th>Détail des scores</th></tr></thead>
+                    <tbody>${rows}</tbody>
+                </table>`;
+            }
+            document.getElementById('teacherOverlay').style.display = 'flex';
+        }
+        function closeTeacherView(){
+            document.getElementById('teacherOverlay').style.display = 'none';
+        }
+        function escapeHtmlCap(str){
+            return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+        function exportTeacherCSV(){
+            const users = loadAllUsers();
+            const names = Object.keys(users).sort();
+            if (!names.length){ alert('Aucune donnée à exporter.'); return; }
+            let csv = 'Élève,Exercices complétés,Moyenne sur 20,' + exercises.map(ex => ex.title).join(',') + '\n';
+            names.forEach(name => {
+                const u = users[name];
+                const scores = Object.values(u.scores || {});
+                const avg = scores.length ? (scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1) : '';
+                const perExercise = exercises.map(ex => (u.scores && u.scores[ex.id] !== undefined) ? u.scores[ex.id].toFixed(1) : '');
+                csv += `"${name}",${(u.completed||[]).length}/${exercises.length},${avg},${perExercise.join(',')}\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = `resultats-cap-anglais-${new Date().toISOString().slice(0,10)}.csv`;
+            a.click(); URL.revokeObjectURL(url);
+        }
+
+        // ============================================
+        // MOTEUR D'ANALYSE ET DE CORRECTION
+        // ============================================
+
+        class CorrectionEngine {
+            constructor(text, exercise) {
+                this.text = text;
+                this.exercise = exercise;
+                this.errors = [];
+                this.warnings = [];
+                this.strengths = [];
+            }
+
+            analyze() {
+                const wordCount = this.getWordCount();
+                const sentences = this.getSentences();
+                
+                // Analyses
+                const structureScore = this.analyzeStructure();
+                const vocabularyScore = this.analyzeVocabulary();
+                const grammarScore = this.analyzeGrammar();
+                const communicationScore = this.analyzeCommunication();
+                const registerScore = this.analyzeRegister();
+
+                const totalScore = structureScore + vocabularyScore + grammarScore + communicationScore + registerScore;
+
+                return {
+                    scores: {
+                        structure: structureScore,
+                        vocabulary: vocabularyScore,
+                        grammar: grammarScore,
+                        communication: communicationScore,
+                        register: registerScore
+                    },
+                    totalScore: totalScore,
+                    feedback: this.generateFeedback(),
+                    remediations: this.generateRemediations(),
+                    strengths: this.strengths,
+                    improvements: this.generateImprovements(),
+                    globalComment: this.generateGlobalComment(totalScore, wordCount)
+                };
+            }
+
+            getWordCount() {
+                return this.text.trim().split(/\s+/).filter(w => w.length > 0).length;
+            }
+
+            getSentences() {
+                return this.text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            }
+
+            analyzeStructure() {
+                let score = 4;
+                const sentences = this.getSentences();
+                const wordCount = this.getWordCount();
+                const lines = this.text.split('\n').filter(l => l.trim().length > 0);
+
+                // Vérification du nombre de mots
+                if (wordCount < this.exercise.wordCount.min) {
+                    score -= 1;
+                    this.errors.push({
+                        category: 'Structure',
+                        issue: `Texte trop court (${wordCount} mots au lieu de ${this.exercise.wordCount.min}-${this.exercise.wordCount.max})`,
+                        advice: 'Développez davantage vos idées pour atteindre le nombre de mots requis.',
+                        example: 'Ajoutez des détails, des exemples ou des formules de politesse appropriées.'
+                    });
+                } else if (wordCount > this.exercise.wordCount.max * 1.2) {
+                    score -= 0.5;
+                    this.warnings.push('Texte un peu long, soyez plus concis.');
+                }
+
+                // Vérification des paragraphes
+                if (this.exercise.type === 'email' || this.exercise.type === 'letter') {
+                    if (lines.length < 3) {
+                        score -= 0.5;
+                        this.errors.push({
+                            category: 'Structure',
+                            issue: 'Manque de paragraphes distincts',
+                            advice: 'Organisez votre texte en paragraphes clairs (introduction, développement, conclusion).',
+                            example: 'Sautez une ligne entre chaque paragraphe pour améliorer la lisibilité.'
+                        });
+                    } else {
+                        this.strengths.push('Bonne organisation en paragraphes');
+                    }
+                }
+
+                // Vérification des phrases
+                if (sentences.length < 3) {
+                    score -= 0.5;
+                    this.errors.push({
+                        category: 'Structure',
+                        issue: 'Phrases trop longues ou manque de phrases',
+                        advice: 'Divisez vos idées en plusieurs phrases courtes et claires.',
+                        example: 'Au lieu de: "I want to work here because I like clothes and I have experience and I am motivated", écrivez: "I want to work here. I have experience in retail. I am very motivated."'
+                    });
+                }
+
+                // Présence de formules appropriées
+                const hasGreeting = /\b(dear|hello|hi)\b/i.test(this.text);
+                const hasClosing = /\b(sincerely|regards|yours|best)\b/i.test(this.text);
+
+                if (this.exercise.type === 'email' || this.exercise.type === 'letter') {
+                    if (!hasGreeting) {
+                        score -= 0.5;
+                        this.errors.push({
+                            category: 'Structure',
+                            issue: 'Absence de formule d\'ouverture',
+                            advice: 'Commencez par une formule de politesse appropriée.',
+                            example: 'Dear Mr. Thompson, / Dear Sir or Madam,'
+                        });
+                    }
+                    if (!hasClosing) {
+                        score -= 0.5;
+                        this.errors.push({
+                            category: 'Structure',
+                            issue: 'Absence de formule de clôture',
+                            advice: 'Terminez par une formule de politesse.',
+                            example: 'Best regards, / Sincerely, / Yours faithfully,'
+                        });
+                    }
+                    if (hasGreeting && hasClosing) {
+                        this.strengths.push('Présence des formules de politesse');
+                    }
+                }
+
+                return Math.max(0, Math.min(4, score));
+            }
+
+            analyzeVocabulary() {
+                let score = 4;
+                const words = this.text.toLowerCase().split(/\W+/);
+                const uniqueWords = new Set(words);
+                const vocabularyRichness = uniqueWords.size / words.length;
+
+                // Richesse du vocabulaire
+                if (vocabularyRichness < 0.5) {
+                    score -= 1;
+                    this.errors.push({
+                        category: 'Vocabulaire',
+                        issue: 'Vocabulaire répétitif',
+                        advice: 'Variez votre vocabulaire en utilisant des synonymes.',
+                        example: 'Au lieu de répéter "good", utilisez: excellent, great, wonderful, fantastic'
+                    });
+                } else if (vocabularyRichness > 0.7) {
+                    this.strengths.push('Vocabulaire varié et riche');
+                }
+
+                // Vocabulaire professionnel approprié
+                const relevantVocab = PROFESSIONAL_VOCABULARY[this.exercise.type] || PROFESSIONAL_VOCABULARY.formal;
+                const usedProfessionalWords = relevantVocab.filter(word => 
+                    this.text.toLowerCase().includes(word)
+                ).length;
+
+                if (usedProfessionalWords < 2) {
+                    score -= 0.5;
+                    this.errors.push({
+                        category: 'Vocabulaire',
+                        issue: 'Manque de vocabulaire professionnel',
+                        advice: 'Utilisez un vocabulaire adapté au contexte professionnel.',
+                        example: `Mots utiles: ${relevantVocab.slice(0, 5).join(', ')}`
+                    });
+                } else if (usedProfessionalWords >= 4) {
+                    this.strengths.push('Bon usage du vocabulaire professionnel');
+                }
+
+                // Détection de faux-amis
+                for (const [error, correction] of Object.entries(COMMON_ERRORS)) {
+                    if (this.text.toLowerCase().includes(error)) {
+                        score -= 0.5;
+                        this.errors.push({
+                            category: 'Vocabulaire',
+                            issue: `Possible faux-ami: "${error}"`,
+                            advice: correction.note,
+                            example: `Utilisez plutôt: ${correction.correct}`
+                        });
+                    }
+                }
+
+                // Longueur moyenne des mots (indicateur de complexité)
+                const avgWordLength = words.reduce((sum, w) => sum + w.length, 0) / words.length;
+                if (avgWordLength > 5) {
+                    this.strengths.push('Utilisation de mots complexes appropriés');
+                }
+
+                return Math.max(0, Math.min(4, score));
+            }
+
+            analyzeGrammar() {
+                let score = 4;
+                let errorCount = 0;
+
+                // Vérification des règles de grammaire
+                for (const [ruleName, patterns] of Object.entries(GRAMMAR_RULES)) {
+                    for (const rule of patterns) {
+                        const matches = this.text.match(rule.pattern);
+                        if (matches && matches.length > 0) {
+                            errorCount++;
+                            score -= 0.5;
+                            this.errors.push({
+                                category: 'Grammaire',
+                                issue: rule.error,
+                                advice: this.getGrammarAdvice(ruleName),
+                                example: this.getGrammarExample(ruleName)
+                            });
+                        }
+                    }
+                }
+
+                // Vérification de la ponctuation
+                const noPunctuation = !/[.!?]$/.test(this.text.trim());
+                if (noPunctuation) {
+                    score -= 0.5;
+                    this.errors.push({
+                        category: 'Grammaire',
+                        issue: 'Ponctuation manquante en fin de texte',
+                        advice: 'Terminez toujours vos phrases par un point.',
+                        example: 'Thank you for your time.'
+                    });
+                }
+
+                // Majuscules
+                const sentences = this.getSentences();
+                const noCapital = sentences.some(s => s.trim()[0] && s.trim()[0] === s.trim()[0].toLowerCase());
+                if (noCapital) {
+                    score -= 0.5;
+                    this.errors.push({
+                        category: 'Grammaire',
+                        issue: 'Majuscule manquante en début de phrase',
+                        advice: 'Commencez chaque phrase par une majuscule.',
+                        example: 'I am writing to confirm...'
+                    });
+                }
+
+                if (errorCount === 0) {
+                    this.strengths.push('Aucune erreur grammaticale majeure détectée');
+                }
+
+                return Math.max(0, Math.min(4, score));
+            }
+
+            analyzeCommunication() {
+                let score = 4;
+                const textLower = this.text.toLowerCase();
+
+                // Vérification des éléments requis
+                let missingElements = 0;
+                const elementChecks = {
+                    'subject line': /\b(subject:|re:|regarding)/i,
+                    'order confirmation': /\b(confirm|received|order|n[°o]?\s*\d+)/i,
+                    'delivery date': /\b(deliver|delivery|will arrive|on\s+\d+|june|15)/i,
+                    'address request': /\b(address|confirm|please|could you)/i,
+                    'thanks': /\b(thank|appreciate|grateful)/i,
+                    'greeting': /\b(dear|hello|hi)/i,
+                    'closing': /\b(sincerely|regards|yours|best)/i,
+                    'closing formula': /\b(sincerely|regards|yours|best)/i,
+                    'introduction': /\b(I am|my name|I would like|applying)/i,
+                    'skills': /\b(experience|skills|ability|can|able)/i,
+                    'motivation': /\b(motivated|interested|passion|enthusiastic|want)/i,
+                    'event': /\b(open day|event|invitation|invite|webinar)/i,
+                    'date': /\b(may|20|saturday|date|january|february|march|april|june|july|august|september|october|november|december|monday|tuesday|wednesday|thursday|friday|sunday)/i,
+                    'RSVP': /\b(confirm|rsvp|please let|reply)/i,
+                    'problem description': /\b(damaged|broken|problem|issue|defect|delay|late)/i,
+                    'order reference': /\b(order|reference|n[°o]?\s*\d+)/i,
+                    'request': /\b(refund|replacement|exchange|solve|explanation|compensation)/i,
+                    'polite complaint': /\b(please|kindly|would appreciate|disappointed|unfortunately)/i,
+                    'personal info': /\b(name|born|nationality|date of birth|address|I am)/i,
+                    'education': /\b(school|student|studying|education|course|training|diploma|cap)/i,
+                    'availability': /\b(available|availability|start date|from\s+\w+)/i,
+                    'acceptance': /\b(sure|yes|of course|happy to|glad to|no problem|okay)/i,
+                    'apology': /\b(sorry|apolog|excuse)/i,
+                    'reason': /\b(because|due to|as|since|reason)/i,
+                    'time suggestion': /\b(\d{1,2}\s?(am|pm)|\d{1,2}:\d{2}|o'clock|morning|afternoon|monday|tuesday|wednesday|thursday|friday)/i,
+                    'question': /\?/,
+                    'venue suggestion': /\b(room|meeting room|office|venue|hall)/i,
+                    'time': /\b(\d{1,2}\s?(am|pm)|\d{1,2}:\d{2}|o'clock|morning|afternoon|evening)/i,
+                    'place': /\b(at|in|located|address|venue|company|office)/i,
+                    'announcement': /\b(inform|announce|please note|would like to inform)/i,
+                    'new schedule': /\b(\d{1,2}\s?(am|pm|h)|hours|schedule|from\s+\d)/i,
+                    'effective date': /\b(from|starting|effective|as of|january|february|march|april|may|june|july|august|september|october|november|december)/i,
+                    'contact info': /\b(question|contact|reach|call|email me|feel free)/i,
+                    'meeting confirmation': /\b(confirm|meeting|appointment)/i,
+                    'location info': /\b(office|floor|address|location|building)/i,
+                    'interpreter question': /\b(interpreter|translat)/i,
+                    'stay dates': /\b(from|to|check-in|check-out|arrive|depart|january|february|march|april|may|june|july|august|september|october|november|december)/i,
+                    'room type': /\b(single|double|dorm|room|bed)/i,
+                    'special request': /\b(request|prefer|would like|allerg|special)/i,
+                    'connection link': /\b(link|zoom|teams|connect|url|click)/i
+                };
+
+                for (const element of this.exercise.requiredElements) {
+                    const pattern = elementChecks[element];
+                    if (pattern && !pattern.test(textLower)) {
+                        missingElements++;
+                        score -= 0.8;
+                        this.errors.push({
+                            category: 'Communication',
+                            issue: `Élément manquant: ${element}`,
+                            advice: `Assurez-vous d'inclure ${element} dans votre texte.`,
+                            example: this.getElementExample(element)
+                        });
+                    }
+                }
+
+                // Clarté du message
+                const avgSentenceLength = this.getWordCount() / this.getSentences().length;
+                if (avgSentenceLength > 25) {
+                    score -= 0.5;
+                    this.warnings.push('Phrases trop longues, simplifiez pour plus de clarté.');
+                } else if (avgSentenceLength < 20 && avgSentenceLength > 10) {
+                    this.strengths.push('Phrases claires et bien construites');
+                }
+
+                if (missingElements === 0) {
+                    this.strengths.push('Tous les éléments requis sont présents');
+                }
+
+                return Math.max(0, Math.min(4, score));
+            }
+
+            analyzeRegister() {
+                let score = 4;
+                const textLower = this.text.toLowerCase();
+
+                const isFormal = ['email', 'letter', 'complaint', 'invitation', 'note'].includes(this.exercise.type);
+                const isInformal = ['message'].includes(this.exercise.type);
+
+                // Vérification du registre formel
+                if (isFormal) {
+                    const formalMarkers = [
+                        /\b(dear|sincerely|yours faithfully|regards)/i,
+                        /\b(would|could|may I|might I)/i,
+                        /\b(furthermore|moreover|however|therefore)/i
+                    ];
+
+                    const informalMarkers = [
+                        /\b(hey|hi|yeah|yep|ok|gonna|wanna|gotta)/i,
+                        /\b(lots of|a lot of|stuff|things)/i
+                    ];
+
+                    const hasFormalMarkers = formalMarkers.some(pattern => pattern.test(this.text));
+                    const hasInformalMarkers = informalMarkers.some(pattern => pattern.test(this.text));
+
+                    if (!hasFormalMarkers) {
+                        score -= 0.5;
+                        this.errors.push({
+                            category: 'Registre de langue',
+                            issue: 'Manque de formules formelles',
+                            advice: 'Utilisez un registre formel pour ce type de document.',
+                            example: 'I would like to..., Could you please..., I would be grateful if...'
+                        });
+                    }
+
+                    if (hasInformalMarkers) {
+                        score -= 1;
+                        this.errors.push({
+                            category: 'Registre de langue',
+                            issue: 'Langage trop informel détecté',
+                            advice: 'Évitez les expressions familières dans un contexte professionnel.',
+                            example: 'Remplacez "hi" par "Dear", "ok" par "acceptable", etc.'
+                        });
+                    }
+
+                    // Contractions
+                    if (/\b(don't|won't|can't|I'm|you're|it's)\b/i.test(this.text)) {
+                        score -= 0.5;
+                        this.errors.push({
+                            category: 'Registre de langue',
+                            issue: 'Contractions inappropriées en contexte formel',
+                            advice: 'Écrivez les formes complètes en contexte formel.',
+                            example: "I'm → I am, don't → do not, can't → cannot"
+                        });
+                    } else {
+                        this.strengths.push('Bon usage des formes complètes (pas de contractions)');
+                    }
+                }
+
+                // Politesse
+                const politeWords = ['please', 'thank', 'kind', 'appreciate', 'grateful'];
+                const hasPoliteWords = politeWords.some(word => textLower.includes(word));
+
+                if (!hasPoliteWords && isFormal) {
+                    score -= 0.5;
+                    this.errors.push({
+                        category: 'Registre de langue',
+                        issue: 'Manque de formules de politesse',
+                        advice: 'Ajoutez des expressions polies pour montrer du respect.',
+                        example: 'Please, Thank you, I would appreciate...'
+                    });
+                } else if (hasPoliteWords) {
+                    this.strengths.push('Bon usage des formules de politesse');
+                }
+
+                return Math.max(0, Math.min(4, score));
+            }
+
+            getGrammarAdvice(ruleName) {
+                const advice = {
+                    subjectVerbAgreement: 'Attention à l\'accord sujet-verbe. En anglais, la 3e personne du singulier (he/she/it) prend un -s au présent simple.',
+                    articles: 'Utilisez "a" devant une consonne et "an" devant une voyelle.',
+                    prepositions: 'Les prépositions de temps en anglais: on + jour, in + mois/année, at + heure.',
+                    tenses: 'Vérifiez la cohérence des temps. Le passé et le futur ne se mélangent pas.',
+                    wordOrder: 'Respectez l\'ordre des mots en anglais: sujet + verbe + complément.'
+                };
+                return advice[ruleName] || 'Vérifiez cette règle grammaticale.';
+            }
+
+            getGrammarExample(ruleName) {
+                const examples = {
+                    subjectVerbAgreement: '✓ He works / She has / It goes ✗ He work / She have / It go',
+                    articles: '✓ an apple, a book ✗ a apple, an book',
+                    prepositions: '✓ on Monday, in May, at 3pm ✗ in Monday, at May',
+                    tenses: '✓ I will go tomorrow / I went yesterday ✗ I will went tomorrow',
+                    wordOrder: '✓ very good ✗ good very'
+                };
+                return examples[ruleName] || '';
+            }
+
+            getElementExample(element) {
+                const examples = {
+                    'order confirmation': 'I am writing to confirm that we have received your order n°4521.',
+                    'delivery date': 'Your order will be delivered on June 15th.',
+                    'address request': 'Could you please confirm your delivery address?',
+                    'thanks': 'Thank you for your trust in our company.',
+                    'greeting': 'Dear Mr. Thompson,',
+                    'closing': 'Best regards, / Sincerely,',
+                    'introduction': 'I am writing to apply for the sales assistant position.',
+                    'skills': 'I have two years of experience in retail and excellent customer service skills.',
+                    'motivation': 'I am very motivated to work in your store because...',
+                    'event': 'We are pleased to invite you to our open day.',
+                    'date': 'The event will take place on Saturday, May 20th.',
+                    'RSVP': 'Please confirm your attendance by email.',
+                    'problem description': 'The product I received was damaged.',
+                    'order reference': 'My order reference is n°7834.',
+                    'request': 'I would like to request a full refund or a replacement.'
+                };
+                return examples[element] || '';
+            }
+
+            generateFeedback() {
+                return {
+                    structure: this.generateCriterionFeedback('structure'),
+                    vocabulary: this.generateCriterionFeedback('vocabulary'),
+                    grammar: this.generateCriterionFeedback('grammar'),
+                    communication: this.generateCriterionFeedback('communication'),
+                    register: this.generateCriterionFeedback('register')
+                };
+            }
+
+            generateCriterionFeedback(criterion) {
+                const errors = this.errors.filter(e => 
+                    e.category.toLowerCase().includes(criterion) || 
+                    (criterion === 'communication' && e.category === 'Communication') ||
+                    (criterion === 'register' && e.category === 'Registre de langue')
+                );
+
+                if (errors.length === 0) {
+                    return `Excellent travail sur le critère ${criterion}. Continuez ainsi!`;
+                } else if (errors.length === 1) {
+                    return `Bon niveau global, mais attention à: ${errors[0].issue}.`;
+                } else {
+                    return `Plusieurs points à améliorer: ${errors.map(e => e.issue).join(', ')}.`;
+                }
+            }
+
+            generateRemediations() {
+                // Retourne les 5 erreurs les plus importantes
+                return this.errors.slice(0, 5);
+            }
+
+            generateImprovements() {
+                const improvements = [];
+                
+                if (this.errors.some(e => e.category === 'Structure')) {
+                    improvements.push('Améliorer la structure et l\'organisation du texte');
+                }
+                if (this.errors.some(e => e.category === 'Vocabulaire')) {
+                    improvements.push('Enrichir et varier le vocabulaire professionnel');
+                }
+                if (this.errors.some(e => e.category === 'Grammaire')) {
+                    improvements.push('Réviser les règles grammaticales de base');
+                }
+                if (this.errors.some(e => e.category === 'Communication')) {
+                    improvements.push('Inclure tous les éléments requis dans la consigne');
+                }
+                if (this.errors.some(e => e.category === 'Registre de langue')) {
+                    improvements.push('Adapter le registre de langue au contexte');
+                }
+
+                if (improvements.length === 0) {
+                    improvements.push('Continuer à pratiquer pour maintenir ce niveau');
+                }
+
+                return improvements;
+            }
+
+            generateGlobalComment(totalScore, wordCount) {
+                let comment = '';
+
+                if (totalScore >= 18) {
+                    comment = `Excellente production ! Votre texte de ${wordCount} mots démontre une très bonne maîtrise de l'anglais professionnel. `;
+                } else if (totalScore >= 16) {
+                    comment = `Très bon travail ! Votre texte de ${wordCount} mots montre une bonne maîtrise globale avec quelques points à peaufiner. `;
+                } else if (totalScore >= 14) {
+                    comment = `Bon travail ! Votre production de ${wordCount} mots est satisfaisante mais mérite quelques améliorations. `;
+                } else if (totalScore >= 12) {
+                    comment = `Travail correct avec ${wordCount} mots. Des progrès sont nécessaires sur plusieurs aspects. `;
+                } else if (totalScore >= 10) {
+                    comment = `Travail acceptable (${wordCount} mots) mais plusieurs améliorations importantes sont nécessaires. `;
+                } else {
+                    comment = `Texte de ${wordCount} mots qui nécessite un travail approfondi sur tous les critères. `;
+                }
+
+                if (this.strengths.length > 0) {
+                    comment += `Points positifs: ${this.strengths[0]}. `;
+                }
+
+                if (this.errors.length > 0) {
+                    comment += `Concentrez-vous particulièrement sur: ${this.errors[0].category.toLowerCase()}.`;
+                }
+
+                return comment;
+            }
+        }
+
+        // ============================================
+        // INTERFACE UTILISATEUR
+        // ============================================
+
+        function initApp() {
+            renderExerciseList();
+            updateProgressDisplay();
+            if (exercises.length > 0) {
+                loadExercise(exercises[0].id);
+            }
+        }
+
+        function renderExerciseList() {
+            const listContainer = document.getElementById('exerciseList');
+            listContainer.innerHTML = exercises.map(ex => `
+                <button class="exercise-btn" onclick="loadExercise('${ex.id}')" id="btn-${ex.id}">
+                    <div>${ex.title}</div>
+                    <div class="exercise-meta">${ex.wordCountText}</div>
+                </button>
+            `).join('');
+        }
+
+        function loadExercise(exerciseId) {
+            currentExercise = exercises.find(ex => ex.id === exerciseId);
+            
+            document.querySelectorAll('.exercise-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`btn-${exerciseId}`).classList.add('active');
+
+            renderExercise();
+        }
+
+        function renderExercise() {
+            const content = document.getElementById('exerciseContent');
+            
+            const savedDraft = getUserRecord(currentStudent).drafts[currentExercise.id];
+            
+            content.innerHTML = `
+                <div class="exercise-header">
+                    <h2 class="exercise-title">${currentExercise.title}</h2>
+                    <div class="exercise-description">${currentExercise.description}</div>
+                </div>
+
+                <div class="context-box">
+                    <div class="context-title">📋 Contexte de l'exercice</div>
+                    <p>${currentExercise.context}</p>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">📝 Consignes</div>
+                    <div style="white-space: pre-line; color: var(--text-secondary); line-height: 1.8;">${currentExercise.instructions}</div>
+                    <div style="margin-top: 15px; font-weight: 600; color: var(--accent);">
+                        Nombre de mots attendus : ${currentExercise.wordCountText}
+                    </div>
+                </div>
+
+                ${savedDraft ? `
+                    <div class="alert alert-info">
+                        💾 Un brouillon existe pour cet exercice. 
+                        <button class="btn btn-secondary" onclick="loadDraft()" style="margin-left: 10px; padding: 8px 16px;">
+                            Charger le brouillon
+                        </button>
+                    </div>
+                ` : ''}
+
+                <div class="writing-area">
+                    <label class="writing-label">Votre production écrite :</label>
+                    <textarea 
+                        class="writing-input" 
+                        id="userText" 
+                        placeholder="Commencez à écrire ici en anglais..."
+                        oninput="updateWordCount()"
+                    ></textarea>
+                    <div class="word-count" id="wordCount">0 mots</div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="submitForCorrection()">
+                        ✨ Obtenir la correction intelligente
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearText()">
+                        🔄 Recommencer
+                    </button>
+                    <button class="btn btn-secondary" onclick="saveAsDraft()">
+                        💾 Sauvegarder brouillon
+                    </button>
+                </div>
+
+                <div id="correctionPanel" class="hidden"></div>
+            `;
+        }
+
+        function loadDraft() {
+            const draft = getUserRecord(currentStudent).drafts[currentExercise.id];
+            if (draft) {
+                document.getElementById('userText').value = draft;
+                updateWordCount();
+                showAlert('✅ Brouillon chargé avec succès !', 'success');
+            }
+        }
+
+        function updateWordCount() {
+            const text = document.getElementById('userText').value;
+            const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+            const count = words.length;
+            const countElement = document.getElementById('wordCount');
+            countElement.textContent = `${count} mots`;
+
+            // Indication visuelle
+            if (count < currentExercise.wordCount.min) {
+                countElement.style.color = 'var(--danger)';
+            } else if (count > currentExercise.wordCount.max) {
+                countElement.style.color = 'var(--warning)';
+            } else {
+                countElement.style.color = 'var(--success)';
+            }
+        }
+
+        function clearText() {
+            if (confirm('Êtes-vous sûr de vouloir effacer tout le texte ?')) {
+                document.getElementById('userText').value = '';
+                updateWordCount();
+                document.getElementById('correctionPanel').innerHTML = '';
+                document.getElementById('correctionPanel').classList.add('hidden');
+            }
+        }
+
+        function saveAsDraft() {
+            const text = document.getElementById('userText').value;
+            if (text.trim()) {
+                const record = getUserRecord(currentStudent);
+                record.drafts[currentExercise.id] = text;
+                saveUserRecord(currentStudent, record);
+                showAlert('✅ Brouillon sauvegardé avec succès !', 'success');
+            } else {
+                showAlert('⚠️ Impossible de sauvegarder un texte vide.', 'info');
+            }
+        }
+
+        function showAlert(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            document.getElementById('exerciseContent').insertBefore(
+                alert, 
+                document.getElementById('exerciseContent').firstChild
+            );
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function submitForCorrection() {
+            const userText = document.getElementById('userText').value.trim();
+            
+            if (!userText) {
+                showAlert('⚠️ Veuillez écrire votre texte avant de demander une correction.', 'info');
+                return;
+            }
+
+            const panel = document.getElementById('correctionPanel');
+            panel.classList.remove('hidden');
+            panel.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Analyse linguistique de votre production en cours...</p>
+                    <p style="color: var(--text-muted); font-size: 0.9em;">Moteur de correction intégré</p>
+                </div>
+            `;
+
+            // Simulation d'un délai de traitement pour l'UX
+            setTimeout(() => {
+                const engine = new CorrectionEngine(userText, currentExercise);
+                const correction = engine.analyze();
+                displayCorrection(correction);
+                
+                // Sauvegarde de la progression
+                if (!userProgress.completed.includes(currentExercise.id)) {
+                    userProgress.completed.push(currentExercise.id);
+                }
+                userProgress.scores[currentExercise.id] = correction.totalScore;
+                persistProgress();
+                updateProgressDisplay();
+            }, 1500);
+        }
+
+        function displayCorrection(correction) {
+            const panel = document.getElementById('correctionPanel');
+            
+            let html = `
+                <div class="score-banner">
+                    <div class="score-item">
+                        <div class="score-label">Note globale</div>
+                        <div class="score-value">${correction.totalScore.toFixed(1)}/20</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-label">Appréciation</div>
+                        <div class="score-value" style="font-size: 1.5em;">
+                            ${correction.totalScore >= 16 ? '🌟 Excellent' : 
+                              correction.totalScore >= 14 ? '👍 Très bien' :
+                              correction.totalScore >= 12 ? '✅ Bien' : 
+                              correction.totalScore >= 10 ? '📈 Assez bien' : '💪 À améliorer'}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="explanation-box">
+                    <strong>📊 Commentaire global :</strong>
+                    <p style="margin-top: 10px;">${correction.globalComment}</p>
+                </div>
+
+                <h3 style="font-family: 'Crimson Pro', serif; color: var(--primary); margin: 30px 0 20px;">
+                    Détail de l'évaluation
+                </h3>
+
+                <div class="evaluation-grid">
+                    ${renderCriterion('Structure et organisation', correction.scores.structure, correction.feedback.structure)}
+                    ${renderCriterion('Vocabulaire', correction.scores.vocabulary, correction.feedback.vocabulary)}
+                    ${renderCriterion('Grammaire et syntaxe', correction.scores.grammar, correction.feedback.grammar)}
+                    ${renderCriterion('Efficacité communicative', correction.scores.communication, correction.feedback.communication)}
+                    ${renderCriterion('Registre de langue', correction.scores.register, correction.feedback.register)}
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
+                    <div class="tips-section" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-color: #4caf50;">
+                        <div class="tips-title" style="color: #1b5e20;">✅ Points forts</div>
+                        ${correction.strengths.length > 0 ? `
+                            <ul class="tips-list">
+                                ${correction.strengths.map(s => `<li style="color: #2e7d32;">${s}</li>`).join('')}
+                            </ul>
+                        ` : '<p style="color: #2e7d32;">Continuez vos efforts pour développer vos points forts.</p>'}
+                    </div>
+                    <div class="tips-section">
+                        <div class="tips-title">📈 Points à améliorer</div>
+                        <ul class="tips-list">
+                            ${correction.improvements.map(i => `<li>${i}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            if (correction.remediations && correction.remediations.length > 0) {
+                html += `
+                    <div class="remediation-section">
+                        <div class="remediation-title">🎯 Remédiations personnalisées</div>
+                        <p style="margin-bottom: 20px; color: #0d47a1;">
+                            Voici les ${correction.remediations.length} points prioritaires à travailler pour progresser :
+                        </p>
+                        <div class="remediation-list">
+                            ${correction.remediations.map((rem, index) => `
+                                <div class="remediation-item">
+                                    <div class="remediation-category">${index + 1}. ${rem.category}</div>
+                                    <div style="color: var(--danger); margin-bottom: 8px; font-weight: 500;">
+                                        ⚠️ ${rem.issue}
+                                    </div>
+                                    <div class="remediation-advice">${rem.advice}</div>
+                                    ${rem.example ? `
+                                        <div class="remediation-example">
+                                            ${rem.example}
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="alert alert-success">
+                        🎉 Félicitations ! Aucune erreur majeure n'a été détectée. Votre production est de très bonne qualité.
+                    </div>
+                `;
+            }
+
+            panel.innerHTML = html;
+        }
+
+        function renderCriterion(name, score, feedback) {
+            const scoreClass = score >= 3.5 ? 'high' : score >= 2.5 ? 'medium' : 'low';
+            return `
+                <div class="criterion-card">
+                    <div class="criterion-header">
+                        <span class="criterion-name">${name}</span>
+                        <span class="criterion-score ${scoreClass}">${score.toFixed(1)}/4</span>
+                    </div>
+                    <div class="criterion-feedback">${feedback}</div>
+                </div>
+            `;
+        }
+
+        function updateProgressDisplay() {
+            const completed = userProgress.completed.length;
+            const total = exercises.length;
+            const percentage = (completed / total) * 100;
+            
+            document.getElementById('completedCount').textContent = `${completed}/${total}`;
+            document.getElementById('progressBar').style.width = `${percentage}%`;
+            
+            const scores = Object.values(userProgress.scores);
+            if (scores.length > 0) {
+                const average = (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1);
+                document.getElementById('averageScore').textContent = `${average}/20`;
+            }
+        }
+
+        // Initialisation au chargement de la page
+        (function initOnLoad(){
+            const existingName = sessionStorage.getItem('capCurrentStudent');
+            if (existingName){
+                currentStudent = existingName;
+                const record = getUserRecord(existingName);
+                userProgress = { completed: record.completed || [], scores: record.scores || {} };
+                document.getElementById('identScreen').style.display = 'none';
+                initApp();
+            }
+            // Sinon, l'écran d'identification reste affiché ; initApp() sera appelé par startSession()
+        })();
+    </script>
+</body>
+</html>
